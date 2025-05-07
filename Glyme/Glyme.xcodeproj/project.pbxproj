@@ -1,0 +1,651 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F27E8EF52DAF01EF00ECFCE3 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27E8EF42DAF01EF00ECFCE3 /* CameraViewModel.swift */; };
+		F2E8A9392DBD85FD00A6EE9E /* GlymeFoodDetectionModelUpdated.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F2E8A9382DBD85FD00A6EE9E /* GlymeFoodDetectionModelUpdated.mlmodel */; };
+		F2FDEA962DA98D0200481253 /* GlymeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FDEA952DA98D0200481253 /* GlymeApp.swift */; };
+		F2FDEA982DA98D0200481253 /* CameraContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FDEA972DA98D0200481253 /* CameraContentView.swift */; };
+		F2FDEA9A2DA98D0500481253 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2FDEA992DA98D0500481253 /* Assets.xcassets */; };
+		F2FDEA9D2DA98D0500481253 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2FDEA9C2DA98D0500481253 /* Preview Assets.xcassets */; };
+		F2FDEAA72DA98D0500481253 /* GlymeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FDEAA62DA98D0500481253 /* GlymeTests.swift */; };
+		F2FDEAB12DA98D0500481253 /* GlymeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FDEAB02DA98D0500481253 /* GlymeUITests.swift */; };
+		F2FDEAB32DA98D0500481253 /* GlymeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FDEAB22DA98D0500481253 /* GlymeUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F2FDEAA32DA98D0500481253 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F2FDEA8A2DA98D0200481253 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F2FDEA912DA98D0200481253;
+			remoteInfo = Glyme;
+		};
+		F2FDEAAD2DA98D0500481253 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F2FDEA8A2DA98D0200481253 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F2FDEA912DA98D0200481253;
+			remoteInfo = Glyme;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F27E8EF42DAF01EF00ECFCE3 /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
+		F2E8A9382DBD85FD00A6EE9E /* GlymeFoodDetectionModelUpdated.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = GlymeFoodDetectionModelUpdated.mlmodel; path = ../../../GlymeFoodDetectionModelUpdated.mlmodel; sourceTree = "<group>"; };
+		F2FDEA922DA98D0200481253 /* Glyme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Glyme.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2FDEA952DA98D0200481253 /* GlymeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlymeApp.swift; sourceTree = "<group>"; };
+		F2FDEA972DA98D0200481253 /* CameraContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraContentView.swift; sourceTree = "<group>"; };
+		F2FDEA992DA98D0500481253 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F2FDEA9C2DA98D0500481253 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F2FDEAA22DA98D0500481253 /* GlymeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GlymeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2FDEAA62DA98D0500481253 /* GlymeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlymeTests.swift; sourceTree = "<group>"; };
+		F2FDEAAC2DA98D0500481253 /* GlymeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GlymeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2FDEAB02DA98D0500481253 /* GlymeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlymeUITests.swift; sourceTree = "<group>"; };
+		F2FDEAB22DA98D0500481253 /* GlymeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlymeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F2FDEA8F2DA98D0200481253 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2FDEA9F2DA98D0500481253 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2FDEAA92DA98D0500481253 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F27E8EF12DAEFEDE00ECFCE3 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		F27E8EF22DAEFEEB00ECFCE3 /* main */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = main;
+			sourceTree = "<group>";
+		};
+		F2FDEA892DA98D0200481253 = {
+			isa = PBXGroup;
+			children = (
+				F2FDEA942DA98D0200481253 /* Glyme */,
+				F2FDEAA52DA98D0500481253 /* GlymeTests */,
+				F2FDEAAF2DA98D0500481253 /* GlymeUITests */,
+				F2FDEA932DA98D0200481253 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F2FDEA932DA98D0200481253 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F2FDEA922DA98D0200481253 /* Glyme.app */,
+				F2FDEAA22DA98D0500481253 /* GlymeTests.xctest */,
+				F2FDEAAC2DA98D0500481253 /* GlymeUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F2FDEA942DA98D0200481253 /* Glyme */ = {
+			isa = PBXGroup;
+			children = (
+				F27E8EF12DAEFEDE00ECFCE3 /* Persistence */,
+				F2FDEAC22DA99D5E00481253 /* Services */,
+				F2FDEAC12DA99D5000481253 /* Views */,
+				F2FDEAC02DA99D4500481253 /* ViewModels */,
+				F2FDEA952DA98D0200481253 /* GlymeApp.swift */,
+				F2FDEA972DA98D0200481253 /* CameraContentView.swift */,
+				F2FDEABF2DA98D2D00481253 /* Models */,
+				F2FDEA992DA98D0500481253 /* Assets.xcassets */,
+				F2FDEA9B2DA98D0500481253 /* Preview Content */,
+			);
+			path = Glyme;
+			sourceTree = "<group>";
+		};
+		F2FDEA9B2DA98D0500481253 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				F2FDEA9C2DA98D0500481253 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F2FDEAA52DA98D0500481253 /* GlymeTests */ = {
+			isa = PBXGroup;
+			children = (
+				F2FDEAA62DA98D0500481253 /* GlymeTests.swift */,
+			);
+			path = GlymeTests;
+			sourceTree = "<group>";
+		};
+		F2FDEAAF2DA98D0500481253 /* GlymeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F2FDEAB02DA98D0500481253 /* GlymeUITests.swift */,
+				F2FDEAB22DA98D0500481253 /* GlymeUITestsLaunchTests.swift */,
+			);
+			path = GlymeUITests;
+			sourceTree = "<group>";
+		};
+		F2FDEABF2DA98D2D00481253 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F2E8A9382DBD85FD00A6EE9E /* GlymeFoodDetectionModelUpdated.mlmodel */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F2FDEAC02DA99D4500481253 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F27E8EF42DAF01EF00ECFCE3 /* CameraViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		F2FDEAC12DA99D5000481253 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F27E8EF22DAEFEEB00ECFCE3 /* main */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F2FDEAC22DA99D5E00481253 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F2FDEA912DA98D0200481253 /* Glyme */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2FDEAB62DA98D0500481253 /* Build configuration list for PBXNativeTarget "Glyme" */;
+			buildPhases = (
+				F2FDEA8E2DA98D0200481253 /* Sources */,
+				F2FDEA8F2DA98D0200481253 /* Frameworks */,
+				F2FDEA902DA98D0200481253 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Glyme;
+			productName = Glyme;
+			productReference = F2FDEA922DA98D0200481253 /* Glyme.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F2FDEAA12DA98D0500481253 /* GlymeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2FDEAB92DA98D0500481253 /* Build configuration list for PBXNativeTarget "GlymeTests" */;
+			buildPhases = (
+				F2FDEA9E2DA98D0500481253 /* Sources */,
+				F2FDEA9F2DA98D0500481253 /* Frameworks */,
+				F2FDEAA02DA98D0500481253 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F2FDEAA42DA98D0500481253 /* PBXTargetDependency */,
+			);
+			name = GlymeTests;
+			productName = GlymeTests;
+			productReference = F2FDEAA22DA98D0500481253 /* GlymeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F2FDEAAB2DA98D0500481253 /* GlymeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2FDEABC2DA98D0500481253 /* Build configuration list for PBXNativeTarget "GlymeUITests" */;
+			buildPhases = (
+				F2FDEAA82DA98D0500481253 /* Sources */,
+				F2FDEAA92DA98D0500481253 /* Frameworks */,
+				F2FDEAAA2DA98D0500481253 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F2FDEAAE2DA98D0500481253 /* PBXTargetDependency */,
+			);
+			name = GlymeUITests;
+			productName = GlymeUITests;
+			productReference = F2FDEAAC2DA98D0500481253 /* GlymeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F2FDEA8A2DA98D0200481253 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					F2FDEA912DA98D0200481253 = {
+						CreatedOnToolsVersion = 15.2;
+					};
+					F2FDEAA12DA98D0500481253 = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = F2FDEA912DA98D0200481253;
+					};
+					F2FDEAAB2DA98D0500481253 = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = F2FDEA912DA98D0200481253;
+					};
+				};
+			};
+			buildConfigurationList = F2FDEA8D2DA98D0200481253 /* Build configuration list for PBXProject "Glyme" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F2FDEA892DA98D0200481253;
+			productRefGroup = F2FDEA932DA98D0200481253 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F2FDEA912DA98D0200481253 /* Glyme */,
+				F2FDEAA12DA98D0500481253 /* GlymeTests */,
+				F2FDEAAB2DA98D0500481253 /* GlymeUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F2FDEA902DA98D0200481253 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2FDEA9D2DA98D0500481253 /* Preview Assets.xcassets in Resources */,
+				F2FDEA9A2DA98D0500481253 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2FDEAA02DA98D0500481253 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2FDEAAA2DA98D0500481253 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F2FDEA8E2DA98D0200481253 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2FDEA982DA98D0200481253 /* CameraContentView.swift in Sources */,
+				F2FDEA962DA98D0200481253 /* GlymeApp.swift in Sources */,
+				F27E8EF52DAF01EF00ECFCE3 /* CameraViewModel.swift in Sources */,
+				F2E8A9392DBD85FD00A6EE9E /* GlymeFoodDetectionModelUpdated.mlmodel in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2FDEA9E2DA98D0500481253 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2FDEAA72DA98D0500481253 /* GlymeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2FDEAA82DA98D0500481253 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2FDEAB12DA98D0500481253 /* GlymeUITests.swift in Sources */,
+				F2FDEAB32DA98D0500481253 /* GlymeUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F2FDEAA42DA98D0500481253 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F2FDEA912DA98D0200481253 /* Glyme */;
+			targetProxy = F2FDEAA32DA98D0500481253 /* PBXContainerItemProxy */;
+		};
+		F2FDEAAE2DA98D0500481253 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F2FDEA912DA98D0200481253 /* Glyme */;
+			targetProxy = F2FDEAAD2DA98D0500481253 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		F2FDEAB42DA98D0500481253 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F2FDEAB52DA98D0500481253 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F2FDEAB72DA98D0500481253 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Glyme/Preview Content\"";
+				DEVELOPMENT_TEAM = 7H476JAQ2Y;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to detect objects.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Nana-Bonsu.Glyme";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F2FDEAB82DA98D0500481253 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Glyme/Preview Content\"";
+				DEVELOPMENT_TEAM = 7H476JAQ2Y;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to detect objects.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Nana-Bonsu.Glyme";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F2FDEABA2DA98D0500481253 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7H476JAQ2Y;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Nana-Bonsu.GlymeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Glyme.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Glyme";
+			};
+			name = Debug;
+		};
+		F2FDEABB2DA98D0500481253 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7H476JAQ2Y;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Nana-Bonsu.GlymeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Glyme.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Glyme";
+			};
+			name = Release;
+		};
+		F2FDEABD2DA98D0500481253 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7H476JAQ2Y;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Nana-Bonsu.GlymeUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Glyme;
+			};
+			name = Debug;
+		};
+		F2FDEABE2DA98D0500481253 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7H476JAQ2Y;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Nana-Bonsu.GlymeUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Glyme;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F2FDEA8D2DA98D0200481253 /* Build configuration list for PBXProject "Glyme" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2FDEAB42DA98D0500481253 /* Debug */,
+				F2FDEAB52DA98D0500481253 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F2FDEAB62DA98D0500481253 /* Build configuration list for PBXNativeTarget "Glyme" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2FDEAB72DA98D0500481253 /* Debug */,
+				F2FDEAB82DA98D0500481253 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F2FDEAB92DA98D0500481253 /* Build configuration list for PBXNativeTarget "GlymeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2FDEABA2DA98D0500481253 /* Debug */,
+				F2FDEABB2DA98D0500481253 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F2FDEABC2DA98D0500481253 /* Build configuration list for PBXNativeTarget "GlymeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2FDEABD2DA98D0500481253 /* Debug */,
+				F2FDEABE2DA98D0500481253 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F2FDEA8A2DA98D0200481253 /* Project object */;
+}
