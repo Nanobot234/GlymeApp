@@ -9,7 +9,8 @@ import AVFoundation
 import Vision
 
 struct CameraContentView: View {
-    @StateObject private var cameraViewModel = CameraViewModel()
+    
+    @EnvironmentObject var cameraViewModel: CameraViewModel
     @State private var showMessage = true //shows a message for the user to point
     @State private var detectedFruit: String? = nil //shows the detected fruit
     @State private var showSheet = false //shows the sheet with the detected fruit
@@ -34,11 +35,18 @@ struct CameraContentView: View {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                                                             showMessage = false
                                                         }
-
                         }
                     
                 }
             }
+            Spacer()
+            HStack {
+                Spacer()
+                PhotoLibraryFloatingButton()
+                    .padding(.trailing, 20)
+                    .padding(.bottom, 40)
+            }
+                
         }
             
             
@@ -78,7 +86,7 @@ struct CameraContentView: View {
                                 .font(.headline)
                         }
                     }
-                    .presentationDetents([.medium])
+                    .presentationDetents([.medium,.large])
                 }
 
         }
@@ -143,7 +151,11 @@ struct CameraContentView: View {
 
 
 #Preview {
+    
+    
     CameraContentView()
+        .environmentObject(CameraViewModel())
+        
 }
 
 

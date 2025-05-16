@@ -8,8 +8,10 @@
 import Foundation
 import AVFoundation
 import Vision
+import UIKit
 
 
+///  CameraViewModel is a class that handles the camera session and object detection
 class CameraViewModel: NSObject, ObservableObject {
     let session = AVCaptureSession()
     let videoOutput = AVCaptureVideoDataOutput() //
@@ -24,7 +26,7 @@ class CameraViewModel: NSObject, ObservableObject {
         configureSession() //This is used to start the whole thing here man!!
     }
     
-    
+    ///  Configure the camera session
     private func configureSession() {
             guard let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back),
                 let videoInput = try? AVCaptureDeviceInput(device: videoDevice) else {
@@ -39,6 +41,7 @@ class CameraViewModel: NSObject, ObservableObject {
             } else {
                 print("Failed to add video input")
                 }
+            // Configure the video output
             if session.canAddOutput(videoOutput) {
                 session.addOutput(videoOutput)
                 videoOutput.videoSettings = [:]
@@ -65,7 +68,9 @@ class CameraViewModel: NSObject, ObservableObject {
                }
            }
        }
-
+    
+    ///  Handle the detection of objects in the camera feed
+    /// - Parameter observations: Array of recognized object observations
        private func handleDetection(_ observations: [VNRecognizedObjectObservation]) {
            guard let bestObservation = observations.first else { return }
            let label = bestObservation.labels.first?.identifier ?? "Unknown"
@@ -75,6 +80,8 @@ class CameraViewModel: NSObject, ObservableObject {
            }
        }
     
+    ///  Request camera permission from the user
+    /// - Parameter completion: Completion handler to handle the permission result
     func requestCameraPermission(completion: @escaping (Bool) -> Void) {
         let status = AVCaptureDevice.authorizationStatus(for: .video)
         switch status {
@@ -96,6 +103,8 @@ class CameraViewModel: NSObject, ObservableObject {
     }
         
 }
+
+// MARK: - AVCaptureVideoDataOutputSampleBufferDelegate
 extension CameraViewModel: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
@@ -114,6 +123,29 @@ extension CameraViewModel: AVCaptureVideoDataOutputSampleBufferDelegate {
         let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:])
         try? handler.perform([request])
     }
+    
+    func detectFruit(in image: UIImage, completion: @escaping (String?) -> Void) {
+           guard let cgImage = image.cgImage else {
+               completion(nil)
+               return
+           }
+           let request = VNCoreMLRequest(model: try! VNCoreMLModel(for: GlymeFoodDetectionModelUpdated(configuration: MLModelConfiguration()).model)) { request, _ in
+               if let results = request.results as? [VNRecognizedObjectObservation],
+                  let topLabel = results.first?.labels.first?.identifier {
+                   DispatchQueue.main.async {
+                       completion(topLabel)
+                   }
+               } else {
+                   DispatchQueue.main.async {
+                       completion(nil)
+                   }
+               }
+           }
+           let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
+           DispatchQueue.global(qos: .userInitiated).async {
+               try? handler.perform([request])
+           }
+       }
 }
 
 

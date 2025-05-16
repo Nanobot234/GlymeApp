@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct GlymeApp: App {
+    
+    @StateObject private var cameraViewModel = CameraViewModel()
+    
     var body: some Scene {
         WindowGroup {
             CameraContentView()
+                .environmentObject(cameraViewModel)
         }
     }
 }
