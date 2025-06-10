@@ -105,7 +105,11 @@ class CameraViewModel: NSObject, ObservableObject {
 }
 
 // MARK: - AVCaptureVideoDataOutputSampleBufferDelegate
+
+
 extension CameraViewModel: AVCaptureVideoDataOutputSampleBufferDelegate {
+    
+    ///  Capture output delegate method to process the video frames that are continously captured by the camera
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
 

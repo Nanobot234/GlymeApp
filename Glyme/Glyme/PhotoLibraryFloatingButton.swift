@@ -49,7 +49,12 @@ struct PhotoLibraryFloatingButton: View {
                     isDetecting = true
                     cameraViewModel.detectFruit(in: image) { fruitLabel in
                         DispatchQueue.main.async {
+                            print("D fruit")
                             detectedFruitLabel = fruitLabel ?? "No fruit detected"
+                            
+                        }
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
                             isDetecting = false
                             showResults = true
                         }

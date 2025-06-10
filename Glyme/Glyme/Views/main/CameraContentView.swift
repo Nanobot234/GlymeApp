@@ -7,10 +7,13 @@
 import SwiftUI
 import AVFoundation
 import Vision
+import UIKit
 
 struct CameraContentView: View {
     
+    
     @EnvironmentObject var cameraViewModel: CameraViewModel
+    @EnvironmentObject var openaiViewModel: OpenAIViewModel // Environment object for Gemini view model
     @State private var showMessage = true //shows a message for the user to point
     @State private var detectedFruit: String? = nil //shows the detected fruit
     @State private var showSheet = false //shows the sheet with the detected fruit
@@ -52,7 +55,12 @@ struct CameraContentView: View {
             
             
                 .onAppear {
-                    cameraViewModel.onFruitDetected = handleDetectedFruit //this sets the closuyre to the right fucntion
+                    cameraViewModel.onFruitDetected =  { fruit in
+                        Task {
+                            await handleDetectedFruit(fruit) // Call the async function to handle detected fruit
+                        }
+                        
+                    } //this sets the closuyre to the right fucntion
                         
                     requestCameraPermission { granted in
                         if granted {
@@ -76,24 +84,31 @@ struct CameraContentView: View {
                 .onDisappear {
                     cameraViewModel.stopSession()
                 }
-                .sheet(isPresented: $showSheet) {
-                    VStack {
-                        Text("Detected Fruit")
-                            .font(.title)
-                            .padding()
-                        if let fruit = detectedFruit {
-                            Text(fruit)
-                                .font(.headline)
-                        }
+                .sheet(isPresented: Binding(
+                    get: { showSheet && (openaiViewModel.isLoading || openaiViewModel.currentNutritionData != nil) },
+                    set: { showSheet = $0 }
+                )) {
+                    if openaiViewModel.isLoading || openaiViewModel.currentNutritionData == nil {
+                        ProgressView("Loading nutrition data...")
+                            .progressViewStyle(CircularProgressViewStyle())
+                            .presentationDetents([.medium, .large])
+                    } else {
+                        NutritionDetailView(nutritionData: openaiViewModel.currentNutritionData!)
                     }
-                    .presentationDetents([.medium,.large])
                 }
 
         }
         
-    func handleDetectedFruit(_ fruit: String) {
+    func handleDetectedFruit(_ fruit: String) async {
+        
+        // Haptic feedback
+            let generator = UINotificationFeedbackGenerator()
+            generator.notificationOccurred(.success)
         detectedFruit = fruit
            showSheet = true
+        await openaiViewModel.getNutritionDataForFruit(for: fruit) // Fetch nutrition data for the detected fruit
+        
+//        await geminiViewModel.getNutritionDataForFruit(for: detectedFruit ?? "") // Fetch nutrition data for the detected fruit
        }
  
     }
