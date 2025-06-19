@@ -13,7 +13,7 @@ struct NutritionDetailView: View {
         
     var body: some View {
     
-
+//       NavigationView {
         Form {
                    Section(header: sectionHeader("Glycemic Index")) {
                        styledText(nutritionData.glycdemicIndexDescription)
@@ -32,6 +32,7 @@ struct NutritionDetailView: View {
                .background(Color(.systemGroupedBackground))
            }
 
+    // the header
            private func sectionHeader(_ title: String) -> some View {
                Text(title)
                    .font(.headline)
@@ -39,6 +40,7 @@ struct NutritionDetailView: View {
                    .padding(.vertical, 4)
            }
 
+    // the text in the section that is styled
            private func styledText(_ text: String) -> some View {
                Text(text)
                    .font(.body)

@@ -1,27 +1,22 @@
-//
-//  PhotoLibraryFloatingButton.swift
-//  Glyme
-//
-//  Created by Nana Bonsu on 5/7/25.
-//
-
 import SwiftUI
 import PhotosUI
 
+/// This view provides a floating button to open the photo library and detect fruits in selected images.
 struct PhotoLibraryFloatingButton: View {
     
-    @EnvironmentObject var cameraViewModel: CameraViewModel
-    @State private var showPicker = false
-    @State private var selectedImage: UIImage? = nil
-    @State private var selectedItem: PhotosPickerItem? = nil
-    @State private var detectedFruitLabel: String = ""
-    @State private var showResults = false
-    @State private var isDetecting  = false
+    @EnvironmentObject var cameraViewModel: CameraViewModel // Access the shared camera view model
+    @State private var showPicker = false // Controls PhotosPicker presentation (not used here)
+    @State private var selectedImage: UIImage? = nil // Holds the selected image from the picker
+    @State private var selectedItem: PhotosPickerItem? = nil // Holds the selected PhotosPicker item
+    @State private var detectedFruitLabel: String = "" // Stores the detected fruit label
+    @State private var showResults = false // Controls the results sheet presentation
+    @State private var isDetecting  = false // Indicates if fruit detection is in progress
     
     var body: some View {
         VStack {
             Spacer()
             HStack {
+                // Floating button to open the photo picker
                 PhotosPicker(
                     selection: $selectedItem,
                     matching: .images,
@@ -40,20 +35,22 @@ struct PhotoLibraryFloatingButton: View {
                 Spacer()
             }
         }
+        // Handle changes to the selected photo picker item
         .onChange(of: selectedItem) { newItem in
             guard let newItem else { return }
             Task {
+                // Load image data from the selected item
                 if let data = try? await newItem.loadTransferable(type: Data.self),
                    let image = UIImage(data: data) {
                     selectedImage = image
-                    isDetecting = true
+                    isDetecting = true // Start detection
+                    // Call fruit detection on the selected image
                     cameraViewModel.detectFruit(in: image) { fruitLabel in
                         DispatchQueue.main.async {
                             print("D fruit")
                             detectedFruitLabel = fruitLabel ?? "No fruit detected"
-                            
                         }
-                        
+                        // Show results after a short delay
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
                             isDetecting = false
                             showResults = true
@@ -62,10 +59,11 @@ struct PhotoLibraryFloatingButton: View {
                 }
             }
         }
+        // Show a sheet with detection results or a loading indicator
         .sheet(isPresented: $showResults) {
             VStack {
                 if(isDetecting) {
-                    ProgressView("Detecting...")
+                    ProgressView("Detecting...") // Show while detection is running
                 } else{
                     Text("Detected Fruits:")
                         .font(.headline)
@@ -75,9 +73,8 @@ struct PhotoLibraryFloatingButton: View {
                 }
             }
             .padding()
-            .presentationDetents([.medium, .large]) // Allows for medium and large sheets, the user can swipe up to see more
-        
-    }
+            .presentationDetents([.medium, .large]) // Allow user to resize the sheet
+        }
     }
 }
 
@@ -85,4 +82,3 @@ struct PhotoLibraryFloatingButton: View {
     PhotoLibraryFloatingButton()
         .environmentObject(CameraViewModel()) // Needed for preview to work
 }
-

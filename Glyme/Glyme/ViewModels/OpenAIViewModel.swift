@@ -24,8 +24,6 @@ class OpenAIViewModel: ObservableObject {
         
         
         
-        
-        
         DispatchQueue.main.async {
             self.isLoading = true // Set loading state to true when starting to fetch data
         }
@@ -35,6 +33,9 @@ class OpenAIViewModel: ObservableObject {
             
             DispatchQueue.main.async {
                 self.currentNutritionData = nutritionData
+                self.isLoading = false // Set loading state to false after fetching data
+                
+                print("Nutrition data set: \(nutritionData)")
             }
         } catch {
             

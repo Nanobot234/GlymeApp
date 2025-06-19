@@ -25,8 +25,9 @@ class OpenAiManager {
     }
         
         
+    /// Fetches the glycemic index description for a given fruit label
         func getGlycemicIndexDescription(for fruitLabel: String) async throws -> String {
-                let prompt = "Please provide an accurate glycemic index of \(fruitLabel) and its impact on blood levels: "
+                let prompt = "Please provide an accurate, concise, 1 sentence description of the  glycemic index of \(fruitLabel) and its impact on blood levels: "
             let parameters = ChatCompletionParameters(messages: [.init(role: .user, content: .text(prompt))], model: .gpt4o)
             let chatCompletion = try await service.startChat(parameters: parameters)
             
@@ -35,8 +36,9 @@ class OpenAiManager {
             return response?.content ?? "No text in response."
             }
         
+        /// Returns a description of the fiber content in the specified fruit label.
         func getFiberDescription(for fruitLabel: String) async throws -> String {
-            let prompt = "Please provide an accurate description of the fiber content in \(fruitLabel) and its rol in regulating blood sugar: "
+            let prompt = "Please provide an accurate, concise, 1 sentence description of the fiber content in \(fruitLabel) and its rol in regulating blood sugar: "
             let parameters = ChatCompletionParameters(messages: [.init(role: .user, content: .text(prompt))], model: .gpt4o)
             let chatCompletion = try await service.startChat(parameters: parameters)
             
@@ -46,9 +48,9 @@ class OpenAiManager {
             }
         
         
-        
+        /// Returns a description of the carbohydrate content in the specified fruit label.
         func getCarbsDescription(for fruitLabel: String) async throws -> String {
-            let prompt = "Please provide an accurate description of the carbohydrate content in \(fruitLabel) and portion recommendations: "
+            let prompt = "Please provide an accurate, concise, 1 sentence description of the carbohydrate content in \(fruitLabel) and portion recommendations: "
             let parameters = ChatCompletionParameters(messages: [.init(role: .user, content: .text(prompt))], model: .gpt4o)
             let chatCompletion = try await service.startChat(parameters: parameters)
             
@@ -59,31 +61,34 @@ class OpenAiManager {
         
         
         func getVitaminDescription(for fruitLabel: String) async throws -> String {
-            let prompt = "Please provide an accurate description of the vitamin content in \(fruitLabel) and its benefits: "
+            let prompt = "Please provide an accurate , concise, 1 sentence description of the vitamin content in \(fruitLabel) and its benefits: "
             let parameters = ChatCompletionParameters(messages: [.init(role: .user, content: .text(prompt))], model: .gpt4o)
             let chatCompletion = try await service.startChat(parameters: parameters)
             
+            
+            
             let response = chatCompletion.choices.first?.message
-           
+            
             return response?.content ?? "No text in response."
             }
         
-        
-        func makeNutritionData(for fruitLabel: String) async throws -> NutritionData {
-            
-            let glycemicIndexDescription = try await getGlycemicIndexDescription(for: fruitLabel)
-            
-            let carbsDescription = try await getCarbsDescription(for: fruitLabel)
-            let fiberDescription = try await getFiberDescription(for: fruitLabel)
-            
-            let vitaminDescription = try await getVitaminDescription(for: fruitLabel)
-            
-            // Create and return the NutritionData object
-            let newNutritionData = NutritionData(foodName: fruitLabel, glycdemicIndexDescription: glycemicIndexDescription, carbsDescription: carbsDescription, fiberDescription: fiberDescription, vitaminDescription: vitaminDescription)
-            
-            return newNutritionData
-        }
-                
+        /// Creates and returns a NutritionData object for the specified fruit label.
+
+    func makeNutritionData(for fruitLabel: String) async throws -> NutritionData {
+        async let glycemicIndexDescription = getGlycemicIndexDescription(for: fruitLabel)
+        async let carbsDescription = getCarbsDescription(for: fruitLabel)
+        async let fiberDescription = getFiberDescription(for: fruitLabel)
+        async let vitaminDescription = getVitaminDescription(for: fruitLabel)
+
+        let newNutritionData = NutritionData(
+            foodName: fruitLabel,
+            glycdemicIndexDescription: try await glycemicIndexDescription,
+            carbsDescription: try await carbsDescription,
+            fiberDescription: try await fiberDescription,
+            vitaminDescription: try await vitaminDescription
+        )
+        return newNutritionData
+    }
     
 }
         

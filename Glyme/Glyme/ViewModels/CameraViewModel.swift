@@ -18,6 +18,8 @@ class CameraViewModel: NSObject, ObservableObject {
     let visionQueue = DispatchQueue(label: "visionQueue")
     @Published var detectedObject: String? = nil
     
+    private let sessionQueue = DispatchQueue(label: "cameraSessionQueue")
+
     var onFruitDetected: ((String) -> Void)? //closure to handle detected fruit
 
     
@@ -54,19 +56,25 @@ class CameraViewModel: NSObject, ObservableObject {
     
     //this is async fucntion, starts running later!!
     func startSession() {
-           if !session.isRunning {
-               DispatchQueue.global(qos: .background).async {
+        
+        sessionQueue.async {
+               if !self.session.isRunning {
                    self.session.startRunning()
                }
            }
+//           if !session.isRunning {
+//               DispatchQueue.global(qos: .background).async {
+//                   self.session.startRunning()
+//               }
+//           }
        }
 
        func stopSession() {
-           if session.isRunning {
-               DispatchQueue.global(qos: .background).async {
-                   self.session.stopRunning()
-               }
-           }
+           sessionQueue.async {
+                  if self.session.isRunning {
+                      self.session.stopRunning()
+                  }
+              }
        }
     
     ///  Handle the detection of objects in the camera feed
