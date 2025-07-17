@@ -18,10 +18,12 @@ class CameraViewModel: NSObject, ObservableObject {
     let visionQueue = DispatchQueue(label: "visionQueue")
     @Published var detectedObject: String? = nil
     
-    private let sessionQueue = DispatchQueue(label: "cameraSessionQueue")
-
+    private let sessionQueue = DispatchQueue(label: "cameraSessionQueue") // Queue for managing camera session operations
+    
+    private var lastDetectionTime = Date() // Store the last detection time to prevent rapid detections
+    
     var onFruitDetected: ((String) -> Void)? //closure to handle detected fruit
-
+    
     
     override init() {
         super.init()
@@ -30,63 +32,58 @@ class CameraViewModel: NSObject, ObservableObject {
     
     ///  Configure the camera session
     private func configureSession() {
-            guard let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back),
-                let videoInput = try? AVCaptureDeviceInput(device: videoDevice) else {
-                print("Failed to access the camera or failed to create video inour")
-                return
-            }
-
-            session.beginConfiguration()
-            if session.canAddInput(videoInput) {
-                session.addInput(videoInput)
-                print("Video input added successfully.")
-            } else {
-                print("Failed to add video input")
-                }
-            // Configure the video output
-            if session.canAddOutput(videoOutput) {
-                session.addOutput(videoOutput)
-                videoOutput.videoSettings = [:]
-                videoOutput.alwaysDiscardsLateVideoFrames = true
-                videoOutput.setSampleBufferDelegate(self, queue: visionQueue)
-            }
-            session.commitConfiguration()
+        guard let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back),
+              let videoInput = try? AVCaptureDeviceInput(device: videoDevice) else {
+            print("Failed to access the camera or failed to create video inour")
+            return
         }
+        
+        session.beginConfiguration()
+        if session.canAddInput(videoInput) {
+            session.addInput(videoInput)
+            print("Video input added successfully.")
+        } else {
+            print("Failed to add video input")
+        }
+        // Configure the video output
+        if session.canAddOutput(videoOutput) {
+            session.addOutput(videoOutput)
+            videoOutput.videoSettings = [:]
+            videoOutput.alwaysDiscardsLateVideoFrames = true
+            videoOutput.setSampleBufferDelegate(self, queue: visionQueue)
+        }
+        session.commitConfiguration()
+    }
     
     
     //this is async fucntion, starts running later!!
     func startSession() {
         
         sessionQueue.async {
-               if !self.session.isRunning {
-                   self.session.startRunning()
-               }
-           }
-//           if !session.isRunning {
-//               DispatchQueue.global(qos: .background).async {
-//                   self.session.startRunning()
-//               }
-//           }
-       }
-
-       func stopSession() {
-           sessionQueue.async {
-                  if self.session.isRunning {
-                      self.session.stopRunning()
-                  }
-              }
-       }
+            if !self.session.isRunning {
+                self.session.startRunning()
+            }
+        }
+    }
+    
+    func stopSession() {
+        sessionQueue.async {
+            if self.session.isRunning {
+                self.session.stopRunning()
+            }
+        }
+    }
     
     ///  Handle the detection of objects in the camera feed
     /// - Parameter observations: Array of recognized object observations
-       private func handleDetection(_ observations: [VNRecognizedObjectObservation]) {
-           guard let bestObservation = observations.first else { return }
-           let label = bestObservation.labels.first?.identifier ?? "Unknown"
-           DispatchQueue.main.async {
-               self.detectedObject = label
-               self.onFruitDetected?(label) // Call the closure when a fruit is detected
-           }
-       }
+    private func handleDetection(_ observations: [VNRecognizedObjectObservation]) {
+        guard let bestObservation = observations.first else { return }
+        let label = bestObservation.labels.first?.identifier ?? "Unknown"
+        DispatchQueue.main.async {
+            self.detectedObject = label
+            self.onFruitDetected?(label) // Call the closure when a fruit is detected
+        }
+    }
     
     ///  Request camera permission from the user
     /// - Parameter completion: Completion handler to handle the permission result
@@ -109,7 +106,7 @@ class CameraViewModel: NSObject, ObservableObject {
             completion(false)
         }
     }
-        
+    
 }
 
 // MARK: - AVCaptureVideoDataOutputSampleBufferDelegate
@@ -119,8 +116,15 @@ extension CameraViewModel: AVCaptureVideoDataOutputSampleBufferDelegate {
     
     ///  Capture output delegate method to process the video frames that are continously captured by the camera
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
-
+        
+        let now = Date() // Get the current time
+        let timeIntervalSinceLastDetection = now.timeIntervalSince(lastDetectionTime) // Calculate the time since the last detection
+        
+        guard timeIntervalSinceLastDetection > 0.5 else { return }
+        lastDetectionTime = now
+        
+        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return } // Get the pixel buffer from the sample buffer
+        
         let request = VNCoreMLRequest(model: try! VNCoreMLModel(for: GlymeFoodDetectionModelUpdated(configuration: MLModelConfiguration()).model)) { request, _ in
             if let results = request.results as? [VNRecognizedObjectObservation] {
                 for result in results {
@@ -131,33 +135,36 @@ extension CameraViewModel: AVCaptureVideoDataOutputSampleBufferDelegate {
                 self.handleDetection(results)
             }
         }
-
+        
         let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:])
         try? handler.perform([request])
     }
     
+    // MARK: - Fruit Detection Method 
     func detectFruit(in image: UIImage, completion: @escaping (String?) -> Void) {
-           guard let cgImage = image.cgImage else {
-               completion(nil)
-               return
-           }
-           let request = VNCoreMLRequest(model: try! VNCoreMLModel(for: GlymeFoodDetectionModelUpdated(configuration: MLModelConfiguration()).model)) { request, _ in
-               if let results = request.results as? [VNRecognizedObjectObservation],
-                  let topLabel = results.first?.labels.first?.identifier {
-                   DispatchQueue.main.async {
-                       completion(topLabel)
-                   }
-               } else {
-                   DispatchQueue.main.async {
-                       completion(nil)
-                   }
-               }
-           }
-           let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
-           DispatchQueue.global(qos: .userInitiated).async {
-               try? handler.perform([request])
-           }
-       }
+        guard let cgImage = image.cgImage else {
+            completion(nil)
+            return
+        }
+        let request = VNCoreMLRequest(model: try! VNCoreMLModel(for: GlymeFoodDetectionModelUpdated(configuration: MLModelConfiguration()).model)) { request, _ in
+            if let results = request.results as? [VNRecognizedObjectObservation],
+               let topLabel = results.first?.labels.first?.identifier {
+                DispatchQueue.main.async {
+                    completion(topLabel)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
+        }
+        let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
+        
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            try? handler.perform([request])
+        }
+    }
 }
 
 

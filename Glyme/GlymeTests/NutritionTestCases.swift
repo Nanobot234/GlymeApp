@@ -1,14 +1,13 @@
 //
-//  GlymeTests.swift
+//  NutritionTestCases.swift
 //  GlymeTests
 //
-//  Created by Nana Bonsu on 4/11/25.
+//  Created by Nana Bonsu on 6/27/25.
 //
 
 import XCTest
-@testable import Glyme
 
-final class GlymeTests: XCTestCase {
+final class NutritionTestCases: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

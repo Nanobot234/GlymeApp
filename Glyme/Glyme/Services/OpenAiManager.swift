@@ -23,6 +23,19 @@ class OpenAiManager {
         }
         self.service = OpenAIServiceFactory.service(apiKey: apiKey) // Initialize the OpenAI service with the API key
     }
+    
+    func getGeneralDiabeticAssessmentDescription(for fruitLabel: String) async throws -> String {
+        let prompt = "Please provide an accurate, concise, 1 sentence general diabetic friendly assessment of \(fruitLabel). This sentence should state whether the fruit is generally considered diabetic-friendly, or not based on its glycemic index, fiber, and carbohydrate content. If it is not diabetic-friendly, please provide a brief explanation of why it is not."
+        
+        let parameters = ChatCompletionParameters(messages: [.init(role: .user, content: .text(prompt))], model: .gpt4o)
+        let chatCompletion = try await service.startChat(parameters: parameters)
+        
+        let response = chatCompletion.choices.first?.message
+       
+        return response?.content ?? "No text in response."
+    }
+            
+            
         
         
     /// Fetches the glycemic index description for a given fruit label
@@ -61,7 +74,7 @@ class OpenAiManager {
         
         
         func getVitaminDescription(for fruitLabel: String) async throws -> String {
-            let prompt = "Please provide an accurate , concise, 1 sentence description of the vitamin content in \(fruitLabel) and its benefits: "
+            let prompt = "Please provide an accurate , concise, 1 sentence description of the vitamin and mineral content in \(fruitLabel) and the benefits of each: "
             let parameters = ChatCompletionParameters(messages: [.init(role: .user, content: .text(prompt))], model: .gpt4o)
             let chatCompletion = try await service.startChat(parameters: parameters)
             
@@ -79,15 +92,33 @@ class OpenAiManager {
         async let carbsDescription = getCarbsDescription(for: fruitLabel)
         async let fiberDescription = getFiberDescription(for: fruitLabel)
         async let vitaminDescription = getVitaminDescription(for: fruitLabel)
+        async let generalDiabeticFriendlyAssessmentDescription = getGeneralDiabeticAssessmentDescription(for: fruitLabel)
 
         let newNutritionData = NutritionData(
-            foodName: fruitLabel,
+            generalDiabeticFriendlyAssessment: try await generalDiabeticFriendlyAssessmentDescription, foodName: fruitLabel, //
             glycdemicIndexDescription: try await glycemicIndexDescription,
             carbsDescription: try await carbsDescription,
             fiberDescription: try await fiberDescription,
             vitaminDescription: try await vitaminDescription
         )
         return newNutritionData
+    }
+    
+    /// Creates a summary of the nutritional information for the given NutritionData object that will be read by apple TTS
+    func createSummaryofNutritionalInformation(for nutritionData: NutritionData) async throws -> String {
+        
+        let prompt = "Please summarize the nutritional information for \(nutritionData.foodName) in a concise statement based on the following data \(nutritionData.summaryofNutritionData()). Dont repeat the data woerd fdor word, but summarize it in a way that is easy to understand and remember. The summary should be no longer than 3 sentences." 
+        
+        let parameters = ChatCompletionParameters(messages: [.init(role: .user, content: .text(prompt))], model: .gpt4o)
+        
+        let chatCompletion = try await service.startChat(parameters: parameters)
+        
+        
+        
+        let response = chatCompletion.choices.first?.message
+        
+        return response?.content ?? "No text in response."
+        
     }
     
 }

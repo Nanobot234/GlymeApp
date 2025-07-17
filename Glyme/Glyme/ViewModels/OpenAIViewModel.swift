@@ -23,7 +23,6 @@ class OpenAIViewModel: ObservableObject {
         }
         
         
-        
         DispatchQueue.main.async {
             self.isLoading = true // Set loading state to true when starting to fetch data
         }

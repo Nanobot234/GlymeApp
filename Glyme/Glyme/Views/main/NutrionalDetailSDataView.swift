@@ -1,20 +1,16 @@
 //
-//  NutritionDetailView.swift
+//  NutrionalDetailSDataView.swift
 //  Glyme
 //
-//  Created by Nana Bonsu on 5/28/25.
+//  Created by Nana Bonsu on 7/13/25.
 //
 
-
 import SwiftUI
-import SwiftData
 
-struct NutritionDetailView: View {
-    
+struct NutrionalDetailSDataView: View {
     
     @Environment(\.modelContext) private var modelContext // Use model context for SwiftData
     let nutritionData: NutritionData
-    
     
     var body: some View {
         ScrollView {
@@ -47,17 +43,21 @@ struct NutritionDetailView: View {
             }
             .padding()
         }
-        //.navigationTitle(nutritionData.foodName) Maybe show this later on?
+        .navigationTitle(nutritionData.foodName)
         .onAppear {
             // Additional setup if needed
             
             // Speak the summary of nutrition data when the view appears
             
-             modelContext.insert(nutritionData) // Add nutrition data to the model context
-//            Task {
-//                try await TextToSpeechManager.speak(OpenAiManager.shared.createSummaryofNutritionalInformation(for: nutritionData)) // try to speak nutritionaInfo summary
-//                
-//            }
+            // modelContext.insert(nutritionData) // Add nutrition data to the model context
+            
+            print("Carbs:\(nutritionData.carbsDescription)")
+            
+            
+            Task {
+                try await TextToSpeechManager.speak(OpenAiManager.shared.createSummaryofNutritionalInformation(for: nutritionData)) // try to speak nutritionaInfo summary
+                
+            }
         }
     }
     
@@ -102,3 +102,10 @@ struct NutritionDetailView: View {
 #Preview {
     NutritionDetailView(nutritionData:NutritionData(generalDiabeticFriendlyAssessment: "Its Diabetic Friendly", foodName: "Apple", glycdemicIndexDescription: "Low Glycemic Index", carbsDescription: "15g of Carbs", fiberDescription: "2.4g of Fiber", vitaminDescription: "Vitamin C and A"))
 }
+
+    
+
+
+//#Preview {
+//    NutrionalDetailSDataView(nutritionData: <#NutritionData#>)
+//}
